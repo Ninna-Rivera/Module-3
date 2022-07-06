@@ -43,7 +43,7 @@ def shift_letter(letter, shift):
         return alphabet_list[index_of_letter + shift]
     
     elif index_of_letter + shift > 25:
-        return alphabet_list[(index_of_letter + shift)-26]
+        return alphabet_list[(index_of_letter + shift)%26]
 
 def caesar_cipher(message, shift):
     '''Caesar Cipher. 
@@ -112,7 +112,7 @@ def shift_by_letter(letter, letter_shift):
         return alphabet_list[index_of_letter + index_of_letter_shift]
     
     elif index_of_letter + index_of_letter_shift > 25: 
-        return alphabet_list[(index_of_letter + index_of_letter_shift)-26]
+        return alphabet_list[(index_of_letter + index_of_letter_shift)%26]
 
 def vigenere_cipher(message, key):
     '''Vigenere Cipher. 
@@ -248,5 +248,9 @@ def scytale_decipher(message, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
-
+    message_list=list(message)
+    new_message_list =[]
+    
+    for i in range (len(message_list)):
+        new_message_list.append(message_list[i//(len(message_list)//shift)+(shift*(i%(len(message_list)//shift)))])
+    return ''.join(new_message_list)
